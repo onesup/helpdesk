@@ -21,7 +21,7 @@ gem "helpdesk", '0.0.14'
 In <b>Rails 4.1</b>, add this to your Gemfile and run the +bundle+ command.
 
 ```ruby
-gem "helpdesk", ">= 0.0.31"
+gem "helpdesk", ">= 0.0.40"
 ```
 ### 2. Run installation/or migration if updated
 
