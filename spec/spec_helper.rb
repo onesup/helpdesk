@@ -1,8 +1,8 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] = 'test'
 require File.expand_path("../dummy/config/environment", __FILE__)
+require 'shoulda/matchers'
 require 'rspec/rails'
-require 'shoulda-matchers'
 require 'factory_girl'
 require 'email_spec'
 

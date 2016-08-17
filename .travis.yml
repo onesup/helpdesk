@@ -1,8 +1,6 @@
 language: ruby
 rvm:
-  - 2.0.0
-  - 2.1.1
-  - 2.1.2
+  - 2.1.10
 
 env:
   - "CI_DB_ADAPTER=sqlite3"

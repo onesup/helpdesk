@@ -63,9 +63,9 @@ module Helpdesk
     end
 
     def send_email
-      Helpdesk::NotificationsMailer.ticket_created_notification(self).deliver
+      Helpdesk::NotificationsMailer.ticket_created_notification(self).deliver_now
       unless requester.email.empty?
-        Helpdesk::NotificationsMailer.ticket_created_confirmation(self).deliver if Helpdesk.send_confirmation_emails
+        Helpdesk::NotificationsMailer.ticket_created_confirmation(self).deliver_now if Helpdesk.send_confirmation_emails
       end
     end
 
