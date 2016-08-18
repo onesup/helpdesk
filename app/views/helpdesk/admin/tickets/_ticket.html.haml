@@ -1,6 +1,6 @@
 %table.table.table-bordered
   %tbody
-    %tr{:class=>ticket.ticket_type.tr_class}
+    %tr{:class=>ticket.ticket_type_tr_class}
       %td{colspan:2}
         %h4
           ="##{ticket.subject}"
@@ -12,7 +12,7 @@
       %td{rowspan:2}
         = status_label humanize_with_i18n(ticket.status,'helpdesk.tickets.statuses'), Helpdesk::Ticket::STATUS_CLASS_BY_KEY[ticket.status.to_sym]
 
-        = ticket.ticket_type.title
+        = ticket.ticket_type_title
         = auto_link(simple_format(ticket.description), :html => { :target => "_blank" })
     %tr
       %td
@@ -50,7 +50,7 @@
                 %div.comment-body
                   = auto_link(simple_format(comment.comment), :html => { :target => "_blank" })
 
-    %tr{:class=>ticket.ticket_type.tr_class}
+    %tr{:class=>ticket.ticket_type_tr_class}
       %td{colspan:2}
         - if show_button
           = link_to 'Show', admin_ticket_url(ticket), class: 'btn btn-block'

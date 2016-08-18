@@ -1,6 +1,6 @@
 - content_for :title do
   = t('helpdesk.mailer.ticket_created_notification.title')
-  = @ticket.ticket_type.title
+  = @ticket.ticket_type_title
 %p
   = t('helpdesk.mailer.ticket_created_notification.ticket_content')
   %br

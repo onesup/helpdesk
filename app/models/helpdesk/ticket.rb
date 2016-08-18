@@ -41,6 +41,14 @@ module Helpdesk
     before_create :set_status
     after_create  :send_email
 
+    def ticket_type_tr_class
+      ticket_type.tr_class rescue ''
+    end
+
+    def ticket_type_title
+      ticket_type.title rescue ''
+    end
+
     def set_status
       if self.status.blank?
         self.status = :new
