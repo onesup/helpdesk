@@ -1,0 +1,39 @@
+<%= content_for :left do %>
+  <nav class="bs-docs-sidebar col">
+    <ul class="nav nav-stacked" id="sidebar">
+      <%= render partial: 'menu', locals:{faqs:Helpdesk::Faq.roots,link_type:'link'} %>
+    </ul>
+  </nav>
+<% end %>
+<div class="content">
+  <div class="pageContainer">
+    <% if params[:search] %>
+      <div class="alert alert-info">
+        <%= t('helpdesk.faqs.search_count', count: @faqs.total_count, query:params[:search]) %>
+      </div>
+    <% end %>
+    <h1>
+      <%= t('helpdesk.faqs.title_s') %>
+    </h1>
+    <ol id="faq">
+      <% @faqs.each do |faq| %>
+        <li class="callout">
+          <span class="title">
+            <%= link_to faqs_url(anchor:faq.to_param) do %>
+              <%= highlight(faq.title,  params[:search], highlighter: '<strong>\1</strong>') %>
+            <% end %>
+          </span>
+          <span class="body">
+            <% if faq.text.index(params[:search]) %>
+              <% start_index = [0, faq.text.index(params[:search])-30].max %>
+            <% else %>
+              <% start_index = 0 %>
+            <% end %>
+            <%= highlight("..."+faq.text[start_index,params[:search].length+40].strip+"...", params[:search], highlighter: '<strong>\1</strong>') %>
+          </span>
+        </li>
+      <% end %>
+      <%= paginate @faqs %>
+    </ol>
+  </div>
+</div>

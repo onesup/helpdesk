@@ -1,0 +1,17 @@
+<%= content_for :left do %>
+  <nav class="bs-docs-sidebar col">
+    <ul class="nav nav-stacked" id="sidebar">
+      <%= render partial: 'menu', locals:{faqs:@faqs,link_type:'anchor'} %>
+    </ul>
+  </nav>
+<% end %>
+<div class="content">
+  <div id="pageContainer">
+    <h2>
+      <%= t('helpdesk.faqs.title_s') %>
+    </h2>
+    <ul id="faq">
+      <%= render partial:'/helpdesk/faqs/faq', locals:{faqs:@faqs,link_type:'anchor'} %>
+    </ul>
+  </div>
+</div>

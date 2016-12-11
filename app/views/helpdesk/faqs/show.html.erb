@@ -1,0 +1,17 @@
+<%= content_for :left do %>
+  <nav class="bs-docs-sidebar">
+    <ul class="nav nav-stacked fixed" id="sidebar">
+      <%= render partial: 'menu', locals:{lvl:1,tree:[0],faqs:Helpdesk::Faq.roots,link_type:''} %>
+    </ul>
+  </nav>
+<% end %>
+<ol class="breadcrumb">
+  <%= menu_li 'FAQ',faqs_url %>
+  <% @faq.ancestors.reverse_each do |faq| %>
+    <%= menu_li faq.title, faq_url(faq) %>
+  <% end %>
+  <%= menu_li @faq.title, faq_url(@faq) %>
+</ol>
+<ol id="faq">
+  <%= render partial:'/helpdesk/faqs/faq', locals:{faqs:[@faq]} %>
+</ol>
