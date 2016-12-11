@@ -1,7 +1,7 @@
 module Helpdesk
   class Faq < ActiveRecord::Base
-    translates :title, :text
-    accepts_nested_attributes_for :translations
+    # translates :title, :text
+    # accepts_nested_attributes_for :translations
 
     acts_as_ordered_tree
 
@@ -18,12 +18,13 @@ module Helpdesk
       id ? "#{id}-#{title.parameterize}" : nil
     end
 
-    def self.search(query, page=1)
+    def self.se
+      arch(query, page=1)
       query = "%#{query}%"
       arel_faqs_t = Arel::Table.new(:helpdesk_faq_translations)
       name_match = arel_faqs_t[:title].matches(query)
       postal_match = arel_faqs_t[:text].matches(query)
-      with_translations.active.where(name_match.or(postal_match)).page(page)
+      active.where(name_match.or(postal_match)).page(page)
     end
 
     def anchor

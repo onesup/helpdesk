@@ -6,12 +6,12 @@ class CreateHelpdeskFaqs < ActiveRecord::Migration
 
       t.timestamps
     end
-    Helpdesk::Faq.create_translation_table! :title => :string, :text => :text
+    # Helpdesk::Faq.create_translation_table! :title => :string, :text => :text
   end
 
   def down
     drop_table :helpdesk_faqs
-    Helpdesk::Faq.drop_translation_table!
+    # Helpdesk::Faq.drop_translation_table!
   end
 
 end
