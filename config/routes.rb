@@ -2,7 +2,7 @@ Helpdesk::Engine.routes.draw do
   require 'route_constraints_faqs'
   require 'route_constraints_tickets'
   # Rails.application.routes.draw do
-  scope "(:locale)", :locale => /pl|pt|en/ do
+  scope "(:locale)", :locale => /pl|pt|en|ko/ do
     # Admin only roots
     namespace :admin do
       resources :tickets do
