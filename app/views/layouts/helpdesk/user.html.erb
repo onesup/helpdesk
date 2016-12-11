@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>
+      <%= t :name, :scope => :helpdesk %>
+    </title>
+    <%= javascript_include_tag "helpdesk/application" %>
+    <%= stylesheet_link_tag    "helpdesk/application", :media => "all" %>
+    <%= javascript_tag "$(document).ready(function(){ $('.dropdown-toggle').dropdown();$('.alert').alert();})" %>
+    <%= csrf_meta_tags %>
+    <%= yield :head %>
+  </head>
+  <body>
+    <div class="container">
+      <%= render 'layouts/helpdesk/topuser' %>
+      <div class="content">
+        <div class="row">
+          <div class="col col-md-3" id="site_leftmenu">
+            <%= yield :left %>
+          </div>
+          <div class="col col-md-9" id="site_leftmenu">
+            <div class="flash"></div>
+            <% flash.each do |type, message| %>
+              <div class="alert alert-<%= type %>" data-alert="alert">
+                <%= link_to "x",'#', :class=>'close', :'data-dismiss'=>"alert" %>
+                <p>
+                  <%= message %>
+                </p>
+              </div>
+            <% end %>
+            <% if content_for?(:title) %>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">
+                    <%= content_for?(:title) ? content_for(:title) : '' %>
+                  </h3>
+                </div>
+                <div class="panel-body">
+                  <%= yield %>
+                </div>
+              </div>
+            <% else %>
+              <%= yield %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <%= yield :scripts %>
+</html>
